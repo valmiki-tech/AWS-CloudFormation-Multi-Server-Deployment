@@ -1,0 +1,58 @@
+AWS CloudFormation: Overview & Key Concepts
+🚀 What is AWS CloudFormation?
+AWS CloudFormation is an Infrastructure as Code (IaC) service that allows you to define and provision AWS resources in an automated and repeatable way using YAML or JSON templates.
+
+With CloudFormation, you can:
+✅ Automate infrastructure deployment
+✅ Manage AWS resources consistently
+✅ Easily update & roll back changes
+✅ Ensure repeatability & compliance
+
+🛠️ How CloudFormation Works
+Write a Template – Define AWS resources (EC2, S3, RDS, etc.) in YAML/JSON
+Create a Stack – Deploy resources using the template
+Manage the Stack – Update, delete, or modify resources through CloudFormation
+📌 Key Components
+1️⃣ Templates – Define resources, configurations, and dependencies
+2️⃣ Stacks – A collection of AWS resources managed as a unit
+3️⃣ StackSets – Deploy stacks across multiple AWS accounts & regions
+4️⃣ Change Sets – Preview changes before applying them to a stack
+
+💡 Example CloudFormation YAML Template
+Deploys an EC2 instance with Nginx installed:
+
+
+AWSTemplateFormatVersion: 2010-09-09
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-09a9858973b288bdd
+      InstanceType: t3.micro
+      SecurityGroupIds:
+        - sg-0e11ab30c5c9f59d1
+      KeyName: my-keypair
+      UserData:
+        Fn::Base64: |
+          #!/bin/bash
+          sudo apt update -y
+          sudo apt install nginx -y
+          sudo systemctl start nginx
+      Tags:
+        - Key: Name
+          Value: CloudFormation-EC2
+
+
+🔹 CloudFormation vs Other IaC Tools
+Feature            	AWS CloudFormation	     Terraform	       AWS CDK
+Language	           YAML/JSON	             HCL	              Python, TypeScript, Java, etc.
+AWS Native	         ✅ Yes	                 ❌ No	            ✅ Yes
+Multi-Cloud Support  ❌ No	                 ✅ Yes	            ❌ No
+State Management	Managed by AWS	Uses Terraform State	Uses AWS SDK
+
+🌟 Why Use AWS CloudFormation?
+AWS-Native Solution (Fully managed by AWS)
+No additional cost (Pay only for AWS resources used)
+Automated & version-controlled deployments
+Supports parameterization & modular templates
+🚀 Get started today with CloudFormation and automate your AWS infrastructure!
